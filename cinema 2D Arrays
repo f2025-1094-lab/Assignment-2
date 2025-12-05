@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int R, C;
+
+    cout << "Enter number of rows: ";
+    cin >> R;
+    cout << "Enter number of columns: ";
+    cin >> C;
+
+    int seats[50][50] = {0};
+
+    int totalSeats = R * C;
+    int bookedSeats = 0;
+    while (bookedSeats < totalSeats) {
+        cout << "Seat Layout "<<endl;
+        for (int i = 1; i <= R; i++) {
+            for (int j = 1; j <= C; j++) {
+                if (seats[i][j] == 0)
+                    cout << "A ";
+                else
+                    cout << "R ";
+            }
+            cout << endl;
+        }
+        int r, c;
+        cout << "Enter row to book: "<<endl;
+        cin >> r;
+        cout << "Enter seat number to book: "<<endl;
+        cin >> c;
+        if (r < 1 || r > R || c < 1 || c > C) {
+            cout << "Invalid seat"<<endl;
+            break;
+        }
+        if (seats[r][c] == 1) {
+            cout << "Seat already reserved"<<endl;
+            continue;
+        }
+        seats[r][c] = 1;
+        bookedSeats++;
+
+        cout << "Seat("<< r << "-" << c << ") reserved successfully"<<endl;
+    }
+
+    cout<<"All seats are reserved"<<endl;
+
+    return 0;
+}
